@@ -69,7 +69,6 @@ public class AutoRegExpEmail {
             Assert.assertEquals(valid, true);
         }
 
-
     }
 
     @Test(dataProvider = "InvalidEmailProvider", dependsOnMethods = "ValidEmailTest")
