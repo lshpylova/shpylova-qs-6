@@ -16,7 +16,8 @@ public class AutoRegExpEmail {
 
     @BeforeClass
     public void initData() {
-       regexpoForEmail = new RegexpoForEmail();
+
+        regexpoForEmail = new RegexpoForEmail();
     }
 
     @DataProvider
