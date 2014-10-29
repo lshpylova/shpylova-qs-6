@@ -1,5 +1,6 @@
 package lesson3.homework.lesson3;
 
+import hometask.lesson3.TestSubString;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -38,46 +39,48 @@ public class SubString {
     @Test(dataProvider = "filters")
     public void stringandsub(String fileName,String firstLine, String secondLine)
     {
-        Assert.assertTrue(firstLine.indexOf(secondLine)!= -1);
+        TestSubString test = new TestSubString();
+        Assert.assertTrue(test.stringMatcher(firstLine,secondLine));
                System.out.println("Строка 1 содержит подстроку 2");
           }
 
     @Test(dataProvider = "filters")
-    public static void write(String fileName, String firstLine, String secondLine) {
-        //Определяем файл
-        File file = new File(fileName);
-
-        try {
-            //проверяем, что если файл не существует то создаем его
-            if(!file.exists()){
-                file.createNewFile();
-            }
-
-            //PrintWriter обеспечит возможности записи в файл
-            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
+public void savetofileanddelete(String fileName,String firstLine, String secondLine){
+                   //Определяем файл
+            File file = new File(fileName);
 
             try {
-                //Записываем текст у файл
-                out.print(firstLine);
-                out.print(secondLine);
-            } finally {
-                //После чего мы должны закрыть файл
-                //Иначе файл не запишется
-                out.close();
+                //проверяем, что если файл не существует то создаем его
+                if(!file.exists()){
+                    file.createNewFile();
+                }
+
+                //PrintWriter обеспечит возможности записи в файл
+                PrintWriter out = new PrintWriter(file.getAbsoluteFile());
+
+                try {
+                    //Записываем текст у файл
+                    out.print(firstLine);
+                    out.print(secondLine);
+                } finally {
+                    //После чего мы должны закрыть файл
+                    //Иначе файл не запишется
+                    out.close();
+                }
+            } catch(IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch(IOException e) {
-            throw new RuntimeException(e);
+
+
+            boolean success = file.delete();
+            if (!success){
+                System.out.println("Deletion failed.");
+                System.exit(0);
+            }else{
+                System.out.println("File deleted.");
+            }
+
         }
+    }
 
-
-        boolean success = file.delete();
-        if (!success){
-            System.out.println("Deletion failed.");
-            System.exit(0);
-        }else{
-            System.out.println("File deleted.");
-        }
-
-}
-}
 
