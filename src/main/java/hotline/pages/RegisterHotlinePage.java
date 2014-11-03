@@ -10,7 +10,13 @@ public class RegisterHotlinePage {
     public void registration(HotUser hotuser){
         fillUserDataAndPush(hotuser);
            }
-    private void fillUserDataAndPush(HotUser hotuser){  }
+
+    private void fillUserDataAndPush(HotUser hotuser) {
+        ValidationFields valfields= new ValidationFields();
+        valfields.validationEmail("");
+        valfields.validationPassword("");
+
+    }
     public void confirmationEmailSent(HotUser hotuser){}
 
 }
