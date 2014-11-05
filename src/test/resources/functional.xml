@@ -5,8 +5,7 @@
 
     <test name="SmokeTest">
         <classes>
-            <class name="simple.FirstTest" />
-            <class name="main.hometask.lesson2.AutoRegExpEmail"/>
+            <class name="hotline.functional.MainTestClass"/>
         </classes>
     </test>
 </suite>

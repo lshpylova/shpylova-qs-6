@@ -10,30 +10,22 @@ import org.openqa.selenium.WebDriver;
  * Time: 18:02
  * To change this template use File | Settings | File Templates.
  */
-public class RegPage {
+public class RegDataPage {
     private WebDriver driver;
-    public String CLOSESELECTOR = "close";
-    public String OKSELECTOR2 = "blue-button";
-    public String REGISTERLINK = "reg";
+
+
     public String EMAILRLINK = "email";
     public String TYPERLINK ="nick";
     public String PASSWORDRLINK = "password";
     public String PASSWORD2RLINK = "password2";
+    public String OKSELECTOR2 = "blue-button";
+    public String EMAILXPATH = "/html/body/div[6]/div[2]/div[1]/div/div[1]/div/form/div[1]/span";
 
 
 
-    public RegPage(WebDriver driver) {
+    public RegDataPage(WebDriver driver) {
         this.driver = driver;
     }
-
-    public void closeWin() {
-        driver.findElement(By.className(OKSELECTOR2)).click();
-    }
-
-    public void clickregbutton() {
-        driver.findElement(By.className(REGISTERLINK)).click();
-    }
-
     public void typeEmail(String email) {
         driver.findElement(By.name(EMAILRLINK)).sendKeys(email);
     }
@@ -51,4 +43,13 @@ public class RegPage {
         driver.findElement(By.name(PASSWORD2RLINK)).sendKeys(password2);
     }
 
+    public void closeWin2() {
+        driver.findElement(By.className(OKSELECTOR2)).click();
+
+    }
+
+    public String emailIsUnavailable(){
+        return driver.findElement(By.xpath(EMAILXPATH)).getText();
+
+    }
 }
