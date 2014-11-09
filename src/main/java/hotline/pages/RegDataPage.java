@@ -13,13 +13,12 @@ import org.openqa.selenium.WebDriver;
 public class RegDataPage {
     private WebDriver driver;
 
-
-    public String EMAILRLINK = "email";
-    public String TYPERLINK ="nick";
-    public String PASSWORDRLINK = "password";
-    public String PASSWORD2RLINK = "password2";
-    public String OKSELECTOR2 = "blue-button";
-    public String EMAILXPATH = "/html/body/div[6]/div[2]/div[1]/div/div[1]/div/form/div[1]/span";
+    private static final By EMAILRLINK = By.name("email");
+    private static final By TYPERLINK =By.name("nick");
+    private static final By PASSWORDRLINK =By.name("password");
+    private static final By PASSWORD2RLINK =By.name("password2");
+    private static final By OKSELECTOR2 = By.className("blue-button");
+    private static final By EMAILXPATH = By.xpath("/html/body/div[6]/div[2]/div[1]/div/div[1]/div/form/div[1]/span");
 
 
 
@@ -27,29 +26,29 @@ public class RegDataPage {
         this.driver = driver;
     }
     public void typeEmail(String email) {
-        driver.findElement(By.name(EMAILRLINK)).sendKeys(email);
+        driver.findElement(EMAILRLINK).sendKeys(email);
     }
 
     public void typeNick(String nick) {
-        driver.findElement(By.name(TYPERLINK)).sendKeys(nick);
+        driver.findElement(TYPERLINK).sendKeys(nick);
     }
 
     public void typePassword(String password) {
-        driver.findElement(By.name(PASSWORDRLINK)).sendKeys(password);
+        driver.findElement(PASSWORDRLINK).sendKeys(password);
     }
 
 
     public void typePassword2(String password2) {
-        driver.findElement(By.name(PASSWORD2RLINK)).sendKeys(password2);
+        driver.findElement(PASSWORD2RLINK).sendKeys(password2);
     }
 
     public void closeWin2() {
-        driver.findElement(By.className(OKSELECTOR2)).click();
+        driver.findElement(OKSELECTOR2).click();
 
     }
 
     public String emailIsUnavailable(){
-        return driver.findElement(By.xpath(EMAILXPATH)).getText();
+        return driver.findElement(EMAILXPATH).getText();
 
     }
 }

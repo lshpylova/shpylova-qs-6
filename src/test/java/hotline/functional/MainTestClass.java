@@ -1,4 +1,5 @@
 package hotline.functional;
+import actors.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,6 +13,7 @@ import org.testng.annotations.Test;
 import hotline.pages.FirstPage;
 import hotline.pages.RegDataPage;
 import hotline.pages.WelcomePage;
+import utils.Log4Test;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,17 +31,36 @@ public class MainTestClass {
         driver = new FirefoxDriver();
     }
 
-    @DataProvider
-    public Object[][] dataForReg() {
+   public User user= new User();
+    @DataProvider(name="testData1")
+    public Object[][] testData() {
+        return new Object[][] {
+                {"http://hotline.ua",user, true, "Поздравляем! Вы успешно зарегистрировались на Hotline"},
+                {"http://hotline.ua",user,false,"Извините, но такой e-mail уже занят"}
+        };
+
+    }
+
+
+  /*  public Object[][] dataForReg() {
         return new Object[][] {
                 new Object[] {"http://hotline.ua","yyttrrh@gm.com","tedt","181920","181920", true, "Поздравляем! Вы успешно зарегистрировались на Hotline"},
                 new Object[] {"http://hotline.ua", "lshpylova@gmail.com","Lshpylova", "gargantua1", "gargantua1", false,"Извините, но такой e-mail уже занят"},
         };
     }
+    */
 
-    @Test(dataProvider = "dataForReg")
-    public static void registerTest(String siteUrl, String email, String nick, String password, String password2,boolean test, String check)
+    @Test(dataProvider = "testData1")
+
+   public static void registerTest(String siteUrl, User user,boolean test, String check)
     {
+        if (test) {
+            Log4Test.info("You try to do a registration in the site hotline.ua");
+        }
+        else{
+            Log4Test.info("You try to do a registration and it was faild");
+        }
+
         driver.get(siteUrl);
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
@@ -50,10 +71,11 @@ public class MainTestClass {
         }
         firstpage.clickregbutton();
         RegDataPage regdata= new RegDataPage(driver);
-        regdata.typeEmail(email);
-        regdata.typeNick(nick);
-        regdata.typePassword(password);
-        regdata.typePassword2(password2);
+
+        regdata.typeEmail(user.email);
+        regdata.typeNick(user.nickname);
+        regdata.typePassword(user.passwd);
+        regdata.typePassword2(user.passwd);
         regdata.closeWin2();
         WelcomePage wel = new WelcomePage(driver);
 
@@ -63,7 +85,7 @@ public class MainTestClass {
 
         }else{
 
-            Assert.assertEquals(regdata.emailIsUnavailable(), check);
+            Assert.assertEquals(regdata.emailIsUnavailable(), check, "email is true");
         }
 
 

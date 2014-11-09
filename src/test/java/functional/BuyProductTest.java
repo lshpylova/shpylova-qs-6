@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.BasketPage;
 import pages.Homepage;
 import pages.LoginPage;
+import utils.Log4Test;
 
 import java.util.HashMap;
 
@@ -15,6 +16,8 @@ import java.util.HashMap;
 public class BuyProductTest {
     @Test
     public void buySingleProduct(HashMap<String,Double> product, User user){
+        Log4Test.info("You try to buy a product in site hotline.ua");
+
         Homepage homepage = new Homepage();
         homepage.addToBasket(product);
         homepage.openBasket();
