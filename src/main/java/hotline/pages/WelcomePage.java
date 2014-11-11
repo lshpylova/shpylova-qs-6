@@ -21,11 +21,17 @@ public class WelcomePage {
        this.driver = driver;
    }
 
-    public String welcometext(){
-        Log4Test.info("Your registration is finished");
-        return
-                driver.findElement(By.xpath(XPATHWELCOME)).getText();
-    }
+   // public String welcometext(){
+  //      Log4Test.info("Your registration is finished");
+      //  return
+      //          driver.findElement(By.xpath(XPATHWELCOME)).getText();
+  //  }
+ public boolean welcometext(){
+         Log4Test.info("Your registration is finished");
+    return
+             driver.findElement(By.xpath(XPATHWELCOME)).isDisplayed();
+     }
+
 
 
 

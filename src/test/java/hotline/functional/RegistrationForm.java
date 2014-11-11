@@ -25,6 +25,7 @@ import utils.Log4Test;
  */
 public class RegistrationForm extends WebDriverClass {
 
+
     public User user= new User();
     @DataProvider(name="testData1")
     public Object[][] testData() {
@@ -54,12 +55,16 @@ public class RegistrationForm extends WebDriverClass {
         regdata.registerClick();
 
         WelcomePage wel = new WelcomePage(driver);
-        if (positive==true){
-            Assert.assertEquals(wel.welcometext(), check);
+       if (positive==true){
+           Assert.assertTrue(wel.welcometext()==true,"pass the registration");
+          //  Assert.assertEquals(wel.welcometext(), check);
         }else{
-            Assert.assertEquals(regdata.emailIsUnavailable(), check, "email is true");
-        }
+        //    Assert.assertEquals(regdata.emailIsUnavailable(), check, "email is true");
+
+           Assert.assertTrue(regdata.emailIsUnavailable()==true,"email is exist");
+
+       }
 
 
-    }
+            }
 }

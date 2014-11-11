@@ -19,6 +19,7 @@ public class RegDataPage {
     private static final By PASSWORDRLINK =By.name("password");
     private static final By PASSWORD2RLINK =By.name("password2");
     private static final By OKSELECTOR2 = By.className("blue-button");
+
     private static final By EMAILXPATH = By.xpath("/html/body/div[6]/div[2]/div[1]/div/div[1]/div/form/div[1]/span");
     private WebDriverWrapper driver;
 
@@ -56,8 +57,15 @@ public class RegDataPage {
 
        }
 
-    public String emailIsUnavailable(){
-        return driver.findElement(EMAILXPATH).getText();
+  //  public String emailIsUnavailable(){
+     //   return driver.findElement(EMAILXPATH).getText();
+
+   // }
+
+    public boolean emailIsUnavailable(){
+          return driver.findElement(EMAILXPATH).isDisplayed();
 
     }
+
+
 }
