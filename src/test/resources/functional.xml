@@ -1,11 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="firstTestSuite" verbose="1" >
+<suite name="Suite1" verbose="2" >
     <parameter name="expectedCount" value="2"/>
 
-    <test name="SmokeTest">
+    <test verbose="2" name="Smoke Test">
         <classes>
-            <class name="hotline.functional.MainTestClass"/>
-        </classes>
-    </test>
+            <class name="hotline.functional.RegistrationForm"/>
+            <class name="hotline.functional.FindProuctsInHotline"/>
+            <class name="hotline.functional.ComparePricesTest"/>
+
+                </classes>
+
+     </test>
+
+
 </suite>

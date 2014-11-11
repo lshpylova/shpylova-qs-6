@@ -3,6 +3,9 @@ package hotline.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import selenium.WebDriverWrapper;
+import utils.Log4Test;
 
 
 /**
@@ -14,23 +17,35 @@ import org.openqa.selenium.WebDriver;
  */
 
 
-public class FirstPage {
+public class FirstPage
 
-    //  public String CLOSESELECTOR = "close";
-    public String OKSELECTOR2 = "blue-button";
-    public String REGISTERLINK = "reg";
+{
+    private static final By CLOSESELECTOR = By.className("close");
+    private static final By OKSELECTOR2 = By.className("blue-button");
+    private static final By REGISTERLINK = By.className("reg");
 
-    private WebDriver driver;
+    private WebDriverWrapper driver;
 
-    public FirstPage(WebDriver driver) {
+    public FirstPage(WebDriverWrapper driver) {
         this.driver = driver;
     }
 
+    public void closeSelector() {
+        driver.findElement(CLOSESELECTOR).click();
+    }
+
     public void closeWin() {
-        driver.findElement(By.className(OKSELECTOR2)).click();
+        driver.findElement(OKSELECTOR2).click();
     }
 
     public void clickregbutton() {
-        driver.findElement(By.className(REGISTERLINK)).click();
+        Log4Test.info("You click on the button registration");
+        driver.findElement(REGISTERLINK).click();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            Log4Test.error("InterruptedException in HomePage.reg()");
+            Assert.fail("InterruptedException in HomePage.reg()");
+        }
     }
 }

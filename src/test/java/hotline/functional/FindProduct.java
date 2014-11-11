@@ -1,18 +1,20 @@
-package testfunct;
+package hotline.functional;
 
 import hotline.pages.WebDriverClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import selenium.WebDriverWrapper;
 
 /**
  * Created by Lena on 05.11.2014.
  */
-public class FindProduct extends WebDriverClass{
+public class FindProduct {
 
     private static final By NAMELINK = By.id("searchbox");
     private static final By CLICKBTN = By.id("doSearch");
+    private WebDriverWrapper driver;
 
-    public FindProduct(WebDriver driver)
+   public FindProduct(WebDriverWrapper driver)
     {
         this.driver = driver;
     }
