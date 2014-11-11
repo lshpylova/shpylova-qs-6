@@ -45,18 +45,16 @@ public class RegDataPage {
         driver.findElement(PASSWORD2RLINK).sendKeys(password2);
     }
 
-    public void closeWin2() {
+    public void registerClick() {
         driver.findElement(OKSELECTOR2).click();
-
         try {
-            Thread.sleep(1500);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             Log4Test.error("InterruptedException in RegisterPage.registerNewUser()");
             Assert.fail("InterruptedException in RegisterPage.registerNewUser()");
         }
-        Log4Test.info("Advertising window is closed");
 
-    }
+       }
 
     public String emailIsUnavailable(){
         return driver.findElement(EMAILXPATH).getText();

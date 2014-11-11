@@ -7,8 +7,6 @@
     <groupId>qa-6</groupId>
     <artifactId>shpylova-qs-6</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
     <profiles>
        <profile>
            <id>firefox_local</id>
@@ -16,23 +14,16 @@
                 <browser.name>firefox</browser.name>
                     </properties>
        </profile>
-
-
-
-        <profile>
+       <profile>
             <id>html_local</id>
             <properties>
                 <browser.name>htmlunit</browser.name>
             </properties>
         </profile>
-
     </profiles>
 
     <build>
     <plugins>
-
-
-
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
@@ -44,15 +35,12 @@
             </configuration>
         </plugin>
     </plugins>
-
-
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
-
 </build>
 
 <dependencies>
@@ -86,9 +74,5 @@
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
     </dependency>
-
-
 </dependencies>
-
-
 </project>
