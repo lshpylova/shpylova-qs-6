@@ -51,7 +51,7 @@ public class RegistrationForm extends WebDriverClass {
         regdata.typeNick(user.nickname);
         regdata.typePassword(user.passwd);
         regdata.typePassword2(user.passwd);
-        regdata.closeWin2();
+        regdata.registerClick();
 
         WelcomePage wel = new WelcomePage(driver);
         if (positive==true){
