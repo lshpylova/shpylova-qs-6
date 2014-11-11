@@ -3,7 +3,7 @@
 <suite name="Suite1" verbose="2" >
     <parameter name="expectedCount" value="2"/>
 
-    <test verbose="2" name="Smoke Test">
+    <test name="Smoke Test">
         <classes>
             <class name="hotline.functional.RegistrationForm"/>
             <class name="hotline.functional.FindProuctsInHotline"/>

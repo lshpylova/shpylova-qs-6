@@ -2,6 +2,7 @@ package hotline.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import selenium.WebDriverWrapper;
 import utils.Log4Test;
 
@@ -46,6 +47,13 @@ public class RegDataPage {
 
     public void closeWin2() {
         driver.findElement(OKSELECTOR2).click();
+
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            Log4Test.error("InterruptedException in RegisterPage.registerNewUser()");
+            Assert.fail("InterruptedException in RegisterPage.registerNewUser()");
+        }
         Log4Test.info("Advertising window is closed");
 
     }
