@@ -3,6 +3,7 @@ package hotline.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import selenium.WebDriverWrapper;
+import utils.Log4Test;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class SortByTypeAndPrices  {
     public void openAndSort() {
     driver.findElement(OpenElement).click();
     driver.findElement(SortElement).click();
+    Log4Test.info("You sort the elements by price- pass");
 }
 
 

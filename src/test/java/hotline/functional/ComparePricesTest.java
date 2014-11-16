@@ -38,7 +38,7 @@ public class ComparePricesTest extends WebDriverClass {
         Assert.assertEquals(price.size()>=2,true,"test pass");
          }
         else {
-            Log4Test.error("Your list consists with les then 2 price");
+            Log4Test.error("Your list consists with les then 2 prices");
         }
 
 

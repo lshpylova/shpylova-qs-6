@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Lena on 12.11.2014.
  */
-public class ChoisingOfRefreherators extends WebDriverClass {
+public class ChoisingOfRefregerators extends WebDriverClass {
 
       @DataProvider(name ="link")
     public Object[][] linkforsite() {
@@ -27,11 +27,11 @@ public class ChoisingOfRefreherators extends WebDriverClass {
     @Test(dataProvider = "link")
     public void findAProduct(String siteUrl) {
         driver.get(siteUrl);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+     //   WebDriverWait wait = new WebDriverWait(driver, 10);
         FirstPage firstpage = new FirstPage(driver);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("close"))));
-        firstpage.closeWin();
-        firstpage.closeSelector();
+     //   wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("close"))));
+      //  firstpage.closeWin();
+      //  firstpage.closeSelector();
 
         CatalogPage catalogelement = new CatalogPage(driver);
         catalogelement.openRefrgiratorsPage();

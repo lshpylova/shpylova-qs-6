@@ -8,6 +8,7 @@
             <class name="hotline.functional.RegistrationForm"/>
             <class name="hotline.functional.FindProuctsInHotline"/>
             <class name="hotline.functional.ComparePricesTest"/>
+            <class name="hotline.functional.ChoisingOfRefregerators"/>
 
                 </classes>
 
