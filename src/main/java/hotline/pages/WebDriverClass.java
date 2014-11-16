@@ -18,6 +18,7 @@ public class WebDriverClass {
     public static void before() {
 
        driver= WebDriverFactory.initDriver(PropertyLoader.loadProperty("browser.name"));
+
     }
 
 

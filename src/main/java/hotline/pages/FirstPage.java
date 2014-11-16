@@ -38,6 +38,7 @@ public class FirstPage
         driver.findElement(OKSELECTOR2).click();
     }
 
+
     public void clickregbutton() {
         Log4Test.info("You click on the button registration");
         driver.findElement(REGISTERLINK).click();

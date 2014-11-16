@@ -3,13 +3,14 @@ package selenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.*;
 import utils.PropertyLoader;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Lena on 10.11.2014.
@@ -17,6 +18,10 @@ import java.util.Set;
 public class WebDriverWrapper implements WebDriver {
     private static WebDriver driver;
     public static final int Time_To_Wait=Integer.valueOf(PropertyLoader.loadProperty("selenium.max.timeout"));
+
+    public static WebDriver getOriginalDriver(){
+        return driver;
+    }
 
     public WebDriverWrapper(WebDriver driver){
         this.driver=driver;
@@ -93,5 +98,11 @@ public class WebDriverWrapper implements WebDriver {
         return driver.manage();
     }
 
-
+    public void mouseMoveToElement(By by) {
+        if (driver instanceof RemoteWebDriver) {
+            new Actions(driver).moveToElement(findElement(by)).perform();
+        } else {
+            throw new UnsupportedOperationException("Unsupported action for " + driver.getClass());
+        }
+    }
 }
