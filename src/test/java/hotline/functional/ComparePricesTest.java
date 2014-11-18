@@ -31,17 +31,10 @@ public class ComparePricesTest extends WebDriverClass {
         FindProduct find = new FindProduct(driver);
         find.typeNameAndSearch(name);
         ComparePricesPage compare = new ComparePricesPage(driver);
-        try {
-            Thread.sleep(5000);
-            compare.clickButtonCompare();
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            Assert.assertFalse(false, "Error in threa.sleep ,clickButtonCompare()");
-        }
-
-          List<WebElement> price=driver.findElements(By.className("orng"));
+        compare.clickButtonCompare();
+         List<WebElement> price=driver.findElements(By.className("orng"));
         Assert.assertEquals(price.size()>=2,true,"Page has more then 2 prices for product");
-        Log4Test.info("@@@@@@Test 'CompareProcisTest' is finished");
+        Log4Test.info("@@@@@@Test 'ComparePricesTest' is finished");
     }
 
 

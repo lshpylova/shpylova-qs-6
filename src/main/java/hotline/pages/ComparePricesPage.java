@@ -4,11 +4,11 @@ import hotline.pages.WebDriverClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import selenium.WebDriverWrapper;
 import utils.Log4Test;
-
-import java.util.List;
 
 /**
  * Created by Lena on 08.11.2014.
@@ -24,9 +24,18 @@ public class ComparePricesPage {
     }
 
        public void clickButtonCompare(){
-           Log4Test.info("@@@@@@@Begin the test.You click on the button Compare. Method clickButtonCompare()");
 
-            driver.findElement(compareSelector).click();
+           try {
+               Thread.sleep(5000);
+              } catch (InterruptedException e) {
+               Assert.assertFalse(false, "Error in threa.sleep ,clickButtonCompare()");
+           }
+           Log4Test.info("@@@@@@@Begin the test.You click on the button Compare. Method clickButtonCompare()");
+           WebElement element =  driver.findElement(compareSelector);
+           (new WebDriverWait(driver, 50))
+                   .until(ExpectedConditions.visibilityOf(element));
+
+           driver.findElement(compareSelector).click();
 
 
 
