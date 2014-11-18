@@ -1,14 +1,13 @@
 package hotline.functional;
 
+import hotline.pages.ComparePricesPage;
+import hotline.pages.FindProduct;
 import hotline.pages.WebDriverClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import hotline.pages.ComparePricesMethods;
 import utils.Log4Test;
 
 import java.util.List;
@@ -30,18 +29,19 @@ public class ComparePricesTest extends WebDriverClass {
     public static void productCompTest(String siteUrl, String name) throws InterruptedException {
         driver.get(siteUrl);
         FindProduct find = new FindProduct(driver);
-        find.typeName(name);
-        ComparePricesMethods compare = new ComparePricesMethods(driver);
-        compare.clickButtonCompare();
-        List<WebElement> price=driver.findElements(By.className("orng"));
-        if (price.size()>=2){
-        Assert.assertEquals(price.size()>=2,true,"test pass");
-         }
-        else {
-            Log4Test.error("Your list consists with les then 2 prices");
+        find.typeNameAndSearch(name);
+        ComparePricesPage compare = new ComparePricesPage(driver);
+        try {
+            Thread.sleep(5000);
+            compare.clickButtonCompare();
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            Assert.assertFalse(false, "Error in threa.sleep ,clickButtonCompare()");
         }
 
-
+          List<WebElement> price=driver.findElements(By.className("orng"));
+        Assert.assertEquals(price.size()>=2,true,"Page has more then 2 prices for product");
+        Log4Test.info("@@@@@@Test 'CompareProcisTest' is finished");
     }
 
 

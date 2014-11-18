@@ -1,21 +1,21 @@
 package hotline.functional;
 
+import hotline.pages.FindProduct;
 import hotline.pages.WebDriverClass;
+import hotline.pages.WelcomePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import hotline.pages.GoodsPage;
+import utils.Log4Test;
 
 /**
  * Created by Lena on 05.11.2014.
  */
 public class FindProuctsInHotline extends WebDriverClass {
-    private static final By OKSELECTOR2 = By.className("blue-button");
 
-    @DataProvider(name ="ForSearching")
+    @DataProvider(name ="ForSearchingProduct")
     public Object[][] dataForSearching() {
         return new Object[][]{
                 new Object[]{"http://hotline.ua", "Rowenta",true},
@@ -25,33 +25,24 @@ public class FindProuctsInHotline extends WebDriverClass {
     }
 
 
-    @Test(dataProvider = "ForSearching")
+    @Test(dataProvider = "ForSearchingProduct")
     public static void productTest(String siteUrl, String name, boolean test) throws InterruptedException {
         driver.get(siteUrl);
-
-     /*   if (test) {
-           WebDriverWait wait = new WebDriverWait(driver, 40);
-           wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("close"))));
-           driver.findElement(By.className("close")).click();
-           driver.findElement(OKSELECTOR2).click();
-        }
-*/
-
         FindProduct find = new FindProduct(driver);
-        find.typeName(name);
+        find.typeNameAndSearch(name);
         GoodsPage goods = new GoodsPage(driver);
         if (test==true) {
-            Assert.assertTrue(goods.result(), "product was found");
-
-
+            Log4Test.info("----Begin to find am product with method goods.findTheProductResult()");
+            Assert.assertTrue(goods.findTheProductResult(), "Test failed. Class FindProductInHotline. Method findTheProductResult()");
+            Log4Test.info("----Test finished");
         }else{
-            Assert.assertTrue(goods.negativeResult(), "product wasn't found");
-          //  Log4Test.error("Test was faild");
+
+            Log4Test.info("****Begin to find am product with method findTheProductNegativeResult()");
+            Assert.assertTrue(goods.findTheProductNegativeResult(), "Test failed.  Class FindProductInHotline. findTheProductNegativeResult() ");
+            Log4Test.info("****Test finished");
         }
 
-    //   Thread.sleep(5000);
-
-    }
+        }
 
 
  }

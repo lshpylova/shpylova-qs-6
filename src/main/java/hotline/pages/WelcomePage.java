@@ -2,7 +2,7 @@
 package hotline.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import selenium.WebDriverWrapper;
 import utils.Log4Test;
 
@@ -15,23 +15,19 @@ import utils.Log4Test;
  */
 public class WelcomePage {
     private WebDriverWrapper driver;
-    public static String XPATHWELCOME = "/html/body/div[6]/div[2]/div[1]/div/div[1]/div[2]/h1";
+    public static final By XPATHWELCOME =By.xpath("/html/body/div[6]/div[2]/div[1]/div/div[1]/div[2]/h1");
+    private static final By isRegistredLocator= By.className("registr-successful");
 
    public WelcomePage(WebDriverWrapper driver) {
        this.driver = driver;
    }
 
-   // public String welcometext(){
-  //      Log4Test.info("Your registration is finished");
-      //  return
-      //          driver.findElement(By.xpath(XPATHWELCOME)).getText();
-  //  }
- public boolean welcometext(){
+
+ public boolean welcomeText(){
          Log4Test.info("Your registration is finished");
     return
-             driver.findElement(By.xpath(XPATHWELCOME)).isDisplayed();
+             driver.findElement(isRegistredLocator).isDisplayed();
      }
-
 
 
 

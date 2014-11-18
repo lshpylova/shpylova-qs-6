@@ -1,22 +1,12 @@
 package hotline.pages;
 
-import com.google.common.base.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.testng.Assert;
 import selenium.WebDriverWrapper;
 import utils.Log4Test;
-
 import java.awt.*;
-import java.util.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -44,8 +34,8 @@ public class CatalogPage  {
 
         ((JavascriptExecutor)driver.getOriginalDriver()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
                 driver.findElement(By.className("jspPane")), "style", "padding: 0px 20px 0px 0px; width: 185px; top: -742px;");
-       driver.findElement(LinkSMEG).click();
-        Log4Test.error("You found the product");
+                driver.findElement(LinkSMEG).click();
+                Log4Test.info("You found the product with Brand SMEG");
        //  driver.findElement(By.xpath("//*[@id='filters']//a[contains(text(),'West')]")).click();
         try {
             Thread.sleep(5000);

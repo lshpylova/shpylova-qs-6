@@ -1,14 +1,7 @@
 package hotline.functional;
 import actors.User;
 import hotline.pages.WebDriverClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import hotline.pages.FirstPage;
@@ -48,23 +41,20 @@ public class RegistrationForm extends WebDriverClass {
         }
         firstpage.clickregbutton();
         RegDataPage regdata= new RegDataPage(driver);
-        regdata.typeEmail(user.email);
-        regdata.typeNick(user.nickname);
-        regdata.typePassword(user.passwd);
-        regdata.typePassword2(user.passwd);
+        regdata.dataForReg(user.email,user.nickname,user.passwd,user.passwd);
         regdata.registerClick();
-
         WelcomePage wel = new WelcomePage(driver);
        if (positive==true){
-           Assert.assertTrue(wel.welcometext()==true,"pass the registration");
-          //  Assert.assertEquals(wel.welcometext(), check);
-        }else{
-        //    Assert.assertEquals(regdata.emailIsUnavailable(), check, "email is true");
+           Assert.assertTrue(wel.welcomeText()==true," Welcome Page.class. Test was failed with welcomeTest() method");
+           Log4Test.info("Welcome Page.class. Test was passed with welcomeTest() method.");
 
-           Assert.assertTrue(regdata.emailIsUnavailable()==true,"email is exist");
+        }else{
+           Assert.assertTrue(regdata.emailIsUnavailable()==true,"RegDaraPage.class. Test was failed with emailIsUnacailable() method");
+           Log4Test.info("RegDaraPage.class. Test was passed with emailIsUnacailable() method.");
+
 
        }
 
 
-            }
+         }
 }

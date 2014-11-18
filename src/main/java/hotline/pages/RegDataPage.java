@@ -14,58 +14,41 @@ import utils.Log4Test;
  * To change this template use File | Settings | File Templates.
  */
 public class RegDataPage {
-     private static final By EMAILRLINK = By.name("email");
-    private static final By TYPERLINK =By.name("nick");
-    private static final By PASSWORDRLINK =By.name("password");
-    private static final By PASSWORD2RLINK =By.name("password2");
-    private static final By OKSELECTOR2 = By.className("blue-button");
-
-    private static final By EMAILXPATH = By.xpath("/html/body/div[6]/div[2]/div[1]/div/div[1]/div/form/div[1]/span");
+    private static final By emailLink = By.xpath("//*[@name='email']");
+    private static final By nickLink = By.name("nick");
+    private static final By passwordLink = By.name("password");
+    private static final By passwordRepeatLiink = By.name("password2");
+    private static final By okPopup = By.className("blue-button");
+    private static final By availableEmailSelector = By.className("errors");
     private WebDriverWrapper driver;
 
 
-   public RegDataPage(WebDriverWrapper driver) {
-       this.driver = driver;
-   }
-
-    public void typeEmail(String email) {
-        driver.findElement(EMAILRLINK).sendKeys(email);
+    public RegDataPage(WebDriverWrapper driver) {
+        this.driver = driver;
     }
 
-    public void typeNick(String nick) {
-        driver.findElement(TYPERLINK).sendKeys(nick);
-    }
+    public void dataForReg(String email, String nick, String password, String password2) {
+        driver.findElement(emailLink).sendKeys(email);
+        driver.findElement(nickLink).sendKeys(nick);
+        driver.findElement(passwordLink).sendKeys(password);
+        driver.findElement(passwordRepeatLiink).sendKeys(password2);
 
-    public void typePassword(String password) {
-        driver.findElement(PASSWORDRLINK).sendKeys(password);
-    }
-
-
-    public void typePassword2(String password2) {
-
-        driver.findElement(PASSWORD2RLINK).sendKeys(password2);
     }
 
     public void registerClick() {
-        driver.findElement(OKSELECTOR2).click();
+        driver.findElement(okPopup).click();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
-            Log4Test.error("InterruptedException in RegisterPage.registerNewUser()");
-            Assert.fail("InterruptedException in RegisterPage.registerNewUser()");
+            Log4Test.error("InterruptedException in RegisterDataPage");
+            Assert.fail("InterruptedException in RegisterDataPage");
         }
-
-       }
-
-  //  public String emailIsUnavailable(){
-     //   return driver.findElement(EMAILXPATH).getText();
-
-   // }
-
-    public boolean emailIsUnavailable(){
-          return driver.findElement(EMAILXPATH).isDisplayed();
 
     }
 
+    public boolean emailIsUnavailable() {
+        return driver.findElement(availableEmailSelector).isDisplayed();
+
+    }
 
 }

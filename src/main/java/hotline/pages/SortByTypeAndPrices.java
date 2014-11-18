@@ -1,11 +1,9 @@
 package hotline.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import selenium.WebDriverWrapper;
 import utils.Log4Test;
 
-import java.util.List;
 
 /**
  * Created by Lena on 16.11.2014.
@@ -16,15 +14,12 @@ public class SortByTypeAndPrices  {
     private WebDriverWrapper driver;
 
     public SortByTypeAndPrices(WebDriverWrapper driver) {
-
         this.driver = driver;
     }
 
     public void openAndSort() {
     driver.findElement(OpenElement).click();
     driver.findElement(SortElement).click();
-    Log4Test.info("You sort the elements by price- pass");
+    Log4Test.info("You sort the elements by prices- pass");
 }
-
-
 }

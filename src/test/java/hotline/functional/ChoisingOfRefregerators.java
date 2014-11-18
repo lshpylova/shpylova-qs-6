@@ -1,14 +1,12 @@
 package hotline.functional;
 
 import hotline.pages.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.Log4Test;
+import utils.PropertyLoader;
 
 import java.util.List;
 
@@ -26,26 +24,27 @@ public class ChoisingOfRefregerators extends WebDriverClass {
 
     @Test(dataProvider = "link")
     public void findAProduct(String siteUrl) {
-        driver.get(siteUrl);
-     //   WebDriverWait wait = new WebDriverWait(driver, 10);
-        FirstPage firstpage = new FirstPage(driver);
-     //   wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("close"))));
-      //  firstpage.closeWin();
-      //  firstpage.closeSelector();
+       if (PropertyLoader.loadProperty("browser.name").equals("htmlunit")) {
+            driver.get("http://hotline.ua/bt/holodilniki/");
+           Log4Test.info("This test is skipped and navigate to the the link http://hotline.ua/bt/holodilniki/ ");
+        } else {
+            driver.get(siteUrl);
+            CatalogPage catalogelement = new CatalogPage(driver);
+            catalogelement.openRefrgiratorsPage();
+            SortByTypeAndPrices sort = new SortByTypeAndPrices(driver);
+            sort.openAndSort();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Assert.assertTrue(isFirstPriceLowerThanSecond(catalogelement.getAllprices()) && isProductsTheSame(catalogelement.getAllProductNames(), "SMEG"),
+                    "Test will pass if first price is lower than second and First two Products have same Brands");
+            Log4Test.info("Test passed : first price is lower than second and First two Products have same Brands");
 
-        CatalogPage catalogelement = new CatalogPage(driver);
-        catalogelement.openRefrgiratorsPage();
-        SortByTypeAndPrices sort = new SortByTypeAndPrices(driver);
-        sort.openAndSort();
-          try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-        Assert.assertTrue(isFirstPriceLowerThanSecond(catalogelement.getAllprices()) && isProductsTheSame(catalogelement.getAllProductNames(),"SMEG"),
-        "Test will pass if first price is lower than second and First two Products have same Brands");
-
     }
+
 
 
     public boolean isFirstPriceLowerThanSecond(List <WebElement> list){
