@@ -15,8 +15,10 @@ import utils.Log4Test;
  */
 public class ComparePricesPage {
     private WebDriverWrapper driver;
-    private final By compareSelector = By.className("but-box");
+    //private final By compareSelector = By.className("but-box");
+   // private final By compareSelector =By.xpath("//ul[contains(concat(' ', normalize-space(@class), ' '), ' catalog ')]/li[1]/div[1]/a");
    // private final By compareButton=By.xpath("//a[@href='/bt-feny-stajlery/rowenta-cf-4132/?tab=2']");
+   private final By compareSelector =By.xpath("/html/body/div[6]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[2]/ul/li[1]/div[1]/a");
 
     public ComparePricesPage(WebDriverWrapper driver)
     {
@@ -31,9 +33,9 @@ public class ComparePricesPage {
                Assert.assertFalse(false, "Error in threa.sleep ,clickButtonCompare()");
            }
            Log4Test.info("@@@@@@@Begin the test.You click on the button Compare. Method clickButtonCompare()");
-           WebElement element =  driver.findElement(compareSelector);
-           (new WebDriverWait(driver, 50))
-                   .until(ExpectedConditions.visibilityOf(element));
+        //   WebElement element =  driver.findElement(compareSelector);
+          // (new WebDriverWait(driver, 50))
+            //       .until(ExpectedConditions.visibilityOf(element));
 
            driver.findElement(compareSelector).click();
 
