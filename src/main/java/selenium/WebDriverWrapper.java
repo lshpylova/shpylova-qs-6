@@ -11,15 +11,13 @@ import utils.PropertyLoader;
 
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Lena on 10.11.2014.
  */
 public class WebDriverWrapper implements WebDriver,TakesScreenshot {
     private static WebDriver driver;
-    public static final int Time_To_Wait=Integer.valueOf(PropertyLoader.loadProperty("selenium.max.timeout"));
-
+    public static final int Time_To_Wait = Integer.valueOf(PropertyLoader.loadProperty("selenium.max.timeout"));
 
 
     @Override
@@ -31,23 +29,23 @@ public class WebDriverWrapper implements WebDriver,TakesScreenshot {
                 return ((ChromeDriver) driver).getScreenshotAs(outType);
             } else if (driver instanceof InternetExplorerDriver) {
                 return ((InternetExplorerDriver) driver).getScreenshotAs(outType);
+            } else if (driver instanceof RemoteWebDriver) {
+                return ((RemoteWebDriver) driver).getScreenshotAs(outType);
             } else {
                 return null;
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
         return null;
     }
 
-    public static WebDriver getOriginalDriver(){
+    public static WebDriver getOriginalDriver() {
         return driver;
     }
 
-    public WebDriverWrapper(WebDriver driver){
-        this.driver=driver;
+    public WebDriverWrapper(WebDriver driver) {
+        this.driver = driver;
 
     }
 
@@ -73,8 +71,8 @@ public class WebDriverWrapper implements WebDriver,TakesScreenshot {
     }
 
     @Override
-    public WebElement findElement(By by){
-        WebDriverWait wait =new WebDriverWait(driver,Time_To_Wait);
+    public WebElement findElement(By by) {
+        WebDriverWait wait = new WebDriverWait(driver, Time_To_Wait);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
         return driver.findElement(by);
     }
@@ -121,11 +119,4 @@ public class WebDriverWrapper implements WebDriver,TakesScreenshot {
         return driver.manage();
     }
 
-    public void mouseMoveToElement(By by) {
-        if (driver instanceof RemoteWebDriver) {
-            new Actions(driver).moveToElement(findElement(by)).perform();
-        } else {
-            throw new UnsupportedOperationException("Unsupported action for " + driver.getClass());
-        }
-    }
 }

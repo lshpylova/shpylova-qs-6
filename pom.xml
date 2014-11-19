@@ -20,7 +20,15 @@
                 <browser.name>htmlunit</browser.name>
             </properties>
         </profile>
+
+      <profile>
+        <id>firefox_remoute</id>
+        <properties>
+            <browser.name>firefox_remoute</browser.name>
+        </properties>
+    </profile>
     </profiles>
+
 
     <build>
     <plugins>

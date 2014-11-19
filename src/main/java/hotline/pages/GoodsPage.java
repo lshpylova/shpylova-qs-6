@@ -1,9 +1,6 @@
 package hotline.pages;
 
-import hotline.pages.WebDriverClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import selenium.WebDriverWrapper;
 import utils.Log4Test;
 
@@ -24,24 +21,12 @@ public class GoodsPage  {
 
     public boolean findTheProductResult() {
         Log4Test.info("Class GoodsPage.Method findTheProductResult().You begin to found a product");
-/*
-        try {
-            Thread.sleep(5000);
-    } catch (InterruptedException e) {
-        Log4Test.error("Class GoodsPage.Method findTheProductResult(). You haven't found a product");
-    }*/
         return  driver.findElement(goodLink).isDisplayed();
     }
 
     public boolean findTheProductNegativeResult(){
         Log4Test.info("Class GoodsPage.Method findTheProductNegativeResult.You begin to found a product");
-       /* try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            Log4Test.error("Your product is missed in site");
-        }
-*/
-        return driver.findElement(failLink).isDisplayed();
+               return driver.findElement(failLink).isDisplayed();
     }
 
 

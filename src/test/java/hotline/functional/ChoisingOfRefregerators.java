@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Lena on 12.11.2014.
  */
-public class ChoisingOfRefregerators extends WebDriverClass {
+public class ChoisingOfRefregerators extends AbstractWebDriver {
 
       @DataProvider(name ="link")
     public Object[][] linkforsite() {

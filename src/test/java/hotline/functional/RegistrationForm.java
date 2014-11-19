@@ -1,6 +1,5 @@
 package hotline.functional;
 import actors.User;
-import hotline.pages.WebDriverClass;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -16,7 +15,7 @@ import utils.Log4Test;
  * Time: 11:49
  * To change this template use File | Settings | File Templates.
  */
-public class RegistrationForm extends WebDriverClass {
+public class RegistrationForm extends AbstractWebDriver {
 
 
     public User user= new User();

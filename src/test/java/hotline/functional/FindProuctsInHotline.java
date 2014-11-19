@@ -1,9 +1,6 @@
 package hotline.functional;
 
 import hotline.pages.FindProduct;
-import hotline.pages.WebDriverClass;
-import hotline.pages.WelcomePage;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,7 +10,7 @@ import utils.Log4Test;
 /**
  * Created by Lena on 05.11.2014.
  */
-public class FindProuctsInHotline extends WebDriverClass {
+public class FindProuctsInHotline extends AbstractWebDriver {
 
     @DataProvider(name ="ForSearchingProduct")
     public Object[][] dataForSearching() {
