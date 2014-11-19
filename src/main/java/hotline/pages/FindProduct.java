@@ -5,6 +5,7 @@ package hotline.pages;
  */
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import selenium.WebDriverWrapper;
 
@@ -22,7 +23,9 @@ public class FindProduct {
     }
 
     public void typeNameAndSearch(String name) throws InterruptedException {
-        driver.findElement(typeNameForProduct).sendKeys(name);
+        WebElement searchTypeField = driver.findElement(typeNameForProduct);
+        searchTypeField.clear();
+        searchTypeField.sendKeys(name);
         driver.findElement(doSearchClick).click();
         try {
             Thread.sleep(5000);
