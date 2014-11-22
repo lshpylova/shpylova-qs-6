@@ -15,16 +15,15 @@ import utils.Log4Test;
  */
 public class WelcomePage {
     private WebDriverWrapper driver;
-    public static final By XPATHWELCOME =By.xpath("/html/body/div[6]/div[2]/div[1]/div/div[1]/div[2]/h1");
     private static final By isRegistredLocator= By.className("registr-successful");
-
-   public WelcomePage(WebDriverWrapper driver) {
+    public WelcomePage(WebDriverWrapper driver) {
        this.driver = driver;
    }
 
 
  public boolean welcomeText(){
-         Log4Test.info("Your registration is finished");
+         Log4Test.info("------Method welcomeText()");
+         Log4Test.finish();
     return
              driver.findElement(isRegistredLocator).isDisplayed();
      }

@@ -17,9 +17,30 @@ import org.apache.log4j.Logger;
         // ****************** Default message content ********************
         private static final String INFO_LOG = "INFO: \"%s\"";
         private static final String ERROR_LOG = "ERROR: \"%s\" !";
+        private static final String START_LOG = "START: \"%s\"";
+        private static final String FINISH_LOG = "FINISH: \"%s\"";
+
+    public static String start ()
+    {
+
+        String message = "****************************Start Test";
+        LOGGER.info(String.format(START_LOG, message));
+        Reporter.log(String.format(START_LOG, message));
+        return String.format(START_LOG, message);
+            }
+    public static String finish ()
+    {
+        String message = "*****************************Finish Test";
+        LOGGER.info(String.format(FINISH_LOG, message));
+        Reporter.log(String.format(FINISH_LOG, message));
+        return String.format(FINISH_LOG, message);
+    }
+
+
 
         public static String error (String message)
         {
+
             LOGGER.error(String.format(ERROR_LOG, message));
             Reporter.log(String.format(ERROR_LOG, message));
             return String.format(ERROR_LOG, message);

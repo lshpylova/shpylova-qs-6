@@ -15,6 +15,7 @@ import java.util.List;
  * Created by Lena on 08.11.2014.
  */
 public class ComparePricesTest extends AbstractWebDriver {
+    private static final By PRICESLINK = By.className("orng");
 
     @DataProvider(name="SearchProd")
     public Object[][] dataSearchProd() {
@@ -31,10 +32,10 @@ public class ComparePricesTest extends AbstractWebDriver {
         find.typeNameAndSearch(name);
         ComparePricesPage compare = new ComparePricesPage(driver);
         compare.clickButtonCompare();
-         List<WebElement> price=driver.findElements(By.className("orng"));
+        List<WebElement> price=driver.findElements(PRICESLINK);
         Assert.assertEquals(price.size()>=2,true,"Page has more then 2 prices for product");
-        Log4Test.info("@@@@@@Test 'ComparePricesTest' is finished");
-    }
+        Log4Test.finish();
+       }
 
 
 }

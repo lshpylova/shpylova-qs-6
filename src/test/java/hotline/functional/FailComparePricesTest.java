@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class FailComparePricesTest extends AbstractWebDriver {
 
+    private static final By PRICESLINK = By.className("orng");
     @DataProvider(name="SearchProd")
     public Object[][] dataSearchProd() {
         return new Object[][]{
@@ -26,17 +27,16 @@ public class FailComparePricesTest extends AbstractWebDriver {
     }
 
     @Test(dataProvider = "SearchProd")
-
     public static void productCompTest(String siteUrl, String name) throws InterruptedException {
         driver.get(siteUrl);
         FailFindProduct find = new FailFindProduct(driver);
         find.typeNameAndSearch(name);
         ComparePricesPage compare = new ComparePricesPage(driver);
         compare.clickButtonCompare();
-        List<WebElement> price=driver.findElements(By.className("orng"));
+        List<WebElement> price=driver.findElements(PRICESLINK);
         Assert.assertEquals(price.size()>=2,true,"Page has more then 2 prices for product");
-        Log4Test.info("@@@@@@Test 'ComparePricesTest' is finished");
-    }
+        Log4Test.finish();
+      }
 
 
 }

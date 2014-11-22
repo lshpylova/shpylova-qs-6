@@ -17,13 +17,15 @@ public class CatalogPage  {
     private static final By LinkRefrigirators = By.cssSelector("[href*='/bt/holodilniki/']");
     private final By getAllPrices = By.className("orng");
     private final By getAllNames = By.xpath("//div[@class='title-box']/h3/a");
-    private final By LinkSMEG=By.xpath("//*[@id='filters']//a[contains(text(),'SMEG')]");
+    //private final By LinkSMEG=By.xpath("//*[@id='filters']//a[contains(text(),'SMEG')]");
+    private final String LinkSMEG=("//*[@id='filters']//a[contains(text(),'SMEG')]");
     private WebDriverWrapper driver;
     public CatalogPage(WebDriverWrapper driver) {
         this.driver = driver;
     }
 
-    public void openRefrgiratorsPage() {
+    public void openRefrgiratorsPage(String productName) {
+        Log4Test.start();
         Actions actions = new Actions(WebDriverWrapper.getOriginalDriver());
         actions.moveToElement(driver.findElement(Techniks)).perform();
         sleep(2);
@@ -34,14 +36,15 @@ public class CatalogPage  {
 
         ((JavascriptExecutor)driver.getOriginalDriver()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
                 driver.findElement(By.className("jspPane")), "style", "padding: 0px 20px 0px 0px; width: 185px; top: -742px;");
-                driver.findElement(LinkSMEG).click();
-                Log4Test.info("You found the product with Brand SMEG");
-       //  driver.findElement(By.xpath("//*[@id='filters']//a[contains(text(),'West')]")).click();
+                driver.findElement(By.xpath(String.format(LinkSMEG,productName))).click();
+                  Log4Test.info("You found the product with Brand "+ productName);
+                    //  driver.findElement(By.xpath("//*[@id='filters']//a[contains(text(),'West')]")).click();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        Log4Test.finish();
     }
 
 

@@ -23,21 +23,18 @@ public class FindProuctsInHotline extends AbstractWebDriver {
 
 
     @Test(dataProvider = "ForSearchingProduct")
-    public static void productTest(String siteUrl, String name, boolean test) throws InterruptedException {
+    public static void productTest(String siteUrl, String name, boolean test)throws InterruptedException {
         driver.get(siteUrl);
         FindProduct find = new FindProduct(driver);
         find.typeNameAndSearch(name);
         GoodsPage goods = new GoodsPage(driver);
         if (test==true) {
-            Log4Test.info("----Begin to find am product with method goods.findTheProductResult()");
             Assert.assertTrue(goods.findTheProductResult(), "Test failed. Class FindProductInHotline. Method findTheProductResult()");
-            Log4Test.info("----Test finished");
+            Log4Test.finish();
         }else{
-
-            Log4Test.info("****Begin to find am product with method findTheProductNegativeResult()");
-            Assert.assertTrue(goods.findTheProductNegativeResult(), "Test failed.  Class FindProductInHotline. findTheProductNegativeResult() ");
-            Log4Test.info("****Test finished");
-        }
+        Assert.assertTrue(goods.findTheProductNegativeResult(), "Test failed.  Class FindProductInHotline. findTheProductNegativeResult() ");
+            Log4Test.finish();
+             }
 
         }
 

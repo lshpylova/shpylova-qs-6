@@ -22,15 +22,12 @@ public class GoodsPage  {
     public boolean findTheProductResult() {
         Log4Test.info("Class GoodsPage.Method findTheProductResult().You begin to found a product");
         return  driver.findElement(goodLink).isDisplayed();
+
     }
 
     public boolean findTheProductNegativeResult(){
         Log4Test.info("Class GoodsPage.Method findTheProductNegativeResult.You begin to found a product");
                return driver.findElement(failLink).isDisplayed();
     }
-
-
-
-
 
 }

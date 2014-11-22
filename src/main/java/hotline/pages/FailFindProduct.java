@@ -18,18 +18,19 @@ public class FailFindProduct {
     private static final By doSearchClick = By.id("1doSearch");
     private WebDriverWrapper driver;
 
+
     public FailFindProduct(WebDriverWrapper driver) {
         this.driver = driver;
     }
 
     public void typeNameAndSearch(String name) throws InterruptedException {
        driver.findElement(typeNameForProduct).sendKeys(name);
-
        driver.findElement(doSearchClick).click();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            Assert.fail("Class FindProduct. Method typeNameAndSearch()");
+          Assert.fail("Class FindProduct. Method typeNameAndSearch()");
+
         }
 
     }

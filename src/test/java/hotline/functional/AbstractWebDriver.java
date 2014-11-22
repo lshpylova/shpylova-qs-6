@@ -6,9 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import selenium.WebDriverFactory;
 import selenium.WebDriverWrapper;
 import utils.PropertyLoader;
@@ -30,13 +28,19 @@ public class AbstractWebDriver {
 
     }
 
-   @AfterMethod(alwaysRun=true)
-    public void catchExceptions(ITestResult testResult, String scrName, String screenShotSubDirectory) throws Exception{
+
+
+    @AfterMethod(alwaysRun=true)
+    public void catchExceptions(ITestResult testResult) throws Exception{
               if (testResult.getStatus() == ITestResult.FAILURE) {
             System.out.println(testResult.getStatus());
-        //    ScreenShotMaker.clearScreenShotSubDirectory(screenShotSubDirectory);
-            ScreenShotMaker maker =new ScreenShotMaker(driver);
-            maker.takeScreenShot(scrName);
+                  String scrName = "NEW_SCREEN";
+                  System.out.println(testResult.getStatus());
+                  ScreenShotMaker.clearScreenShotSubDirectory(PropertyLoader.loadProperty("screenshot.folder"));
+                  ScreenShotMaker maker =new ScreenShotMaker(driver);
+                  maker.takeScreenShot(scrName);
+                  driver.close();
+                  driver.quit();
                 }
     }
 

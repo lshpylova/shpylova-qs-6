@@ -24,13 +24,14 @@ public class ChoisingOfRefregerators extends AbstractWebDriver {
 
     @Test(dataProvider = "link")
     public void findAProduct(String siteUrl) {
-       if (PropertyLoader.loadProperty("browser.name").equals("htmlunit")) {
-            driver.get("http://hotline.ua/bt/holodilniki/");
+     if (PropertyLoader.loadProperty("browser.name").equals("htmlunit")) {
+           driver.get("http://hotline.ua/bt/holodilniki/");
            Log4Test.info("This test is skipped and navigate to the the link http://hotline.ua/bt/holodilniki/ ");
         } else {
             driver.get(siteUrl);
-            CatalogPage catalogelement = new CatalogPage(driver);
-            catalogelement.openRefrgiratorsPage();
+            CatalogPage catalogElement = new CatalogPage(driver);
+            String productName="SMEG";
+            catalogElement.openRefrgiratorsPage(productName);
             SortByTypeAndPrices sort = new SortByTypeAndPrices(driver);
             sort.openAndSort();
             try {
@@ -38,12 +39,12 @@ public class ChoisingOfRefregerators extends AbstractWebDriver {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Assert.assertTrue(isFirstPriceLowerThanSecond(catalogelement.getAllprices()) && isProductsTheSame(catalogelement.getAllProductNames(), "SMEG"),
+            Assert.assertTrue(isFirstPriceLowerThanSecond(catalogElement.getAllprices()) && isProductsTheSame(catalogElement.getAllProductNames(), "SMEG"),
                     "Test will pass if first price is lower than second and First two Products have same Brands");
             Log4Test.info("Test passed : first price is lower than second and First two Products have same Brands");
 
         }
-    }
+   }
 
 
 

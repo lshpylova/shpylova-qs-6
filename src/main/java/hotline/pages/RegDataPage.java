@@ -17,7 +17,7 @@ public class RegDataPage {
     private static final By emailLink = By.xpath("//*[@name='email']");
     private static final By nickLink = By.name("nick");
     private static final By passwordLink = By.name("password");
-    private static final By passwordRepeatLiink = By.name("password2");
+    private static final By passwordRepeatLink = By.name("password2");
     private static final By okPopup = By.className("blue-button");
     private static final By availableEmailSelector = By.className("errors");
     private WebDriverWrapper driver;
@@ -28,26 +28,33 @@ public class RegDataPage {
     }
 
     public void dataForReg(String email, String nick, String password, String password2) {
+       Log4Test.start();
+       Log4Test.info("Class RegDataPage. Method dataForReg()");
         driver.findElement(emailLink).sendKeys(email);
         driver.findElement(nickLink).sendKeys(nick);
         driver.findElement(passwordLink).sendKeys(password);
-        driver.findElement(passwordRepeatLiink).sendKeys(password2);
+        driver.findElement(passwordRepeatLink).sendKeys(password2);
+        Log4Test.info("You set the next data for registration: "+email+" "+nick+" "+password+" "+password2);
 
     }
 
     public void registerClick() {
+        Log4Test.info("Class RegDataPage. Method registerClick()");
         driver.findElement(okPopup).click();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            Log4Test.error("InterruptedException in RegisterDataPage");
-            Assert.fail("InterruptedException in RegisterDataPage");
+            Log4Test.error("InterruptedException in Class RegDataPage.");
+            Assert.fail("InterruptedException in Class RegDataPage.");
         }
 
     }
 
     public boolean emailIsUnavailable() {
+        Log4Test.info("Class RegDataPage.Method emailIsUnavailable()");
+        Log4Test.finish();
         return driver.findElement(availableEmailSelector).isDisplayed();
+
 
     }
 
